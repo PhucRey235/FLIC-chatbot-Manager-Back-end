@@ -1,0 +1,154 @@
+đây là cấu trúc database mới của tôi 
+
+
+Collection: employees
+Tên document: {employeeID}
+{
+  "employeeID": "EMP123",
+  "username": "employee_username",
+  "email": "employee@company.com",
+  "fullName": "Nguyễn Văn A",
+  "phone": "0901234567",
+  "role": {
+    "type": "customer_support",
+    "level": "standard" // Could be standard, senior, admin, etc.
+  },
+  "department": "sales",
+  "status": "active",
+  "avatar": "url_to_avatar",
+  "createdAt": "2025-03-17T09:00:00Z",
+  "lastActive": "2025-03-17T15:30:00Z",
+  "permissions": {
+    "view_chats": true,
+    "reply_chats": true,
+    "transfer_chats": true,
+    "manage_settings": false
+  },
+  "assignedChannels": ["zalo", "facebook", "rag"],
+  "accessibleTeams": ["sales_team", "support_team"] // Teams the employee can access
+}
+
+===================================================================================
+
+Collection: users
+Tên document: {userID}
+{
+  "userID": "USR456",
+  "platforms": {
+    "zalo": {
+      "id": "zalo_user_id",
+      "name": "Zalo User Name",
+      "avatar": "zalo_avatar_url",
+      "firstInteraction": "2025-02-10T08:15:00Z"
+    },
+    "facebook": {
+      "id": "fb_user_id",
+      "name": "Facebook User Name",
+      "avatar": "fb_avatar_url",
+      "firstInteraction": "2025-01-05T14:20:00Z"
+    },
+    "rag": {
+      "id": "rag_user_id",
+      "name": "Facebook User Name",
+      "avatar": "anonymous",
+      "firstInteraction": "2025-03-01T10:30:00Z"
+    }
+  },
+  "contactInfo": {
+    "email": "user@email.com",
+    "phone": "0909876543"
+  },
+  "metadata": {
+    "createdAt": "2025-01-05T14:20:00Z",
+    "totalConversations": 15,
+    "lastInteraction": "2025-03-17T10:45:00Z",
+    "tags": ["potential_customer", "interested_in_product_x"]
+  }
+}
+
+===================================================================================
+
+Collection: chatbotRAG
+Tên document: {chatbotRAGID}
+{
+  "botID": "chatbotRAGID",
+  "name": "FLIC Chatbot",
+  "version": "1.0.0",
+  "type": "RAG",
+  "languageSupport": "vi",
+  "configuration": {
+    "model_details": {
+      "base_model": "custom_llm",
+      "embedding_model": "multilingual_embedding_v2",
+      "retrieval_strategy": "semantic_hybrid"
+    },
+    "performance_settings": {
+      "temperature": 0.7,
+      "max_tokens": 500,
+      "top_k_retrieval": 5
+    }
+  },
+
+  "performance_metrics": {
+    "total_interactions": 5623,
+    "average_response_time_ms": 450,
+    "accuracy_rate": 0.87,
+    "user_satisfaction_rate": 0.92,
+    "last_training_date": "2025-03-15T00:00:00Z"
+  },
+  "active_channels": ["rag", "zalo", "facebook"],
+  "status": "active",
+  "createdAt": "2025-01-15T09:00:00Z",
+  "lastUpdated": "2025-03-20T15:45:00Z"
+}
+
+===================================================================================
+
+Collection: conversations
+Tên document: {conversationID}
+{
+  "conversationID": "CONV789",
+  "userID": "USR456",
+  "platforms": zalo, // All channels involved in this conversation
+  "startTime": "2025-03-17T10:15:00Z",
+  "endTime": null,
+  "status": "active", // active, resolved, on_hold
+  "messages": [
+    {
+      "messageID": "MSG001",
+      "sender": {
+        "type": "user", // user, employee, system, bot
+        "id": "USR456"
+      },
+      "content": {
+        "text": "Xin chào, tôi cần hỗ trợ về sản phẩm X",
+        "type": "text", // text, image, file, video, audio, location
+        "attachments": [],
+	"timestamp": "2025-03-17T10:15:00Z",
+      },
+      "readStatus": {
+        "read": true,
+        "readBy": ["EMP123"],
+        "readAt": "2025-03-17T10:16:00Z"
+      },
+    },
+
+    {
+      "messageID": "MSG001",
+      "sender": {
+        "type": "employee", // user, employee, system, bot
+        "id": "EMP123"
+      },
+      "content": {
+        "text": "Xin chào, tôi cần hỗ trợ về sản phẩm X",
+        "type": "text", // text, image, file, video, audio, location
+        "attachments": [],
+	"timestamp": "2025-03-17T10:15:00Z",
+      },
+    }
+  ],
+  "lastUpdated": "2025-03-17T10:45:00Z",
+  "customerFeedback": null
+}
+
+
